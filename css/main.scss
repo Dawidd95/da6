@@ -1,0 +1,858 @@
+$primary-color: #10c1af;
+$secondary-font: "Kaushan Script";
+
+body {		
+	margin: 0;
+	padding: 0;
+}
+
+a {
+	text-decoration: none;
+}
+
+span {
+	color: $primary-color;
+}
+
+h2 {
+	font-size: 30px;
+	font-weight: 400;
+	font-family: $secondary-font;
+	color: $primary-color;
+	text-align: center;
+}
+
+strong {
+	color: $primary-color;
+}
+
+iframe {
+	width: 100%;
+	height: 500px;
+	display: block;
+}
+
+::-webkit-scrollbar {
+  width: 5px; }
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; }
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background-color: $primary-color; }
+
+
+.container {
+	width: 100%;
+	height: 100%;
+	background-color: white;
+}
+
+.page-head {
+	width: 100%;
+	height: 700px;
+	background-image: url("../images/slided.jpg");
+	object-fit: cover;
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	/*
+	@media screen and (max-width: 699px) {
+		background-image: url("../images/i3sm.jpg");
+		height: 460px;
+	} */
+}
+
+.page-head__navbar {
+	width: 100%;
+	height: 100px;
+	background-color: transparent;
+	z-index: 10;
+	position: fixed;
+	transition: 0.5s;
+
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-wrap: wrap;
+}
+
+.sticky-navbar {   // ----------------------------------------------------------- NAWIGACJA SCROLL > 100 ------------------------------------------
+	width: 100%;
+	height: 50px;
+	background-color: #222;
+	position: fixed;
+	transition: 0.5s;
+	z-index: 10;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	.navbar__logo {
+		display: none;
+	}
+	
+	.navbar__links {
+		width: 65%;
+		height: 50px;
+		margin-right: auto;
+		margin-left: auto;
+		background-color: #222;
+	
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+		a {
+			color: white;
+			font-size: 16px;
+			font-weight: bold;
+			font-family: "Lato";
+		
+			&:hover {
+				color: $primary-color;
+			}
+		}
+
+		a[href="#page-head__groups-menu"] {
+			height: 50px;
+
+			display: flex;
+			align-items: center;
+		}
+		a[href="#page-head__events-menu"] {
+			height: 50px;
+
+			display: flex;
+			align-items: center;
+		}
+	}
+
+	.page-head__groups-menu, .page-head__events-menu {
+		width: 100%;
+		height: 50%;
+		padding-top: 20px;
+		margin-right: auto;
+		margin-left: auto;
+		border-top: 2px solid $primary-color;
+		border-bottom: 2px solid transparent;
+		box-shadow: 10px 10px 10px 0 rgba(0,0,0,0.4);
+
+
+		background-color: #222;
+
+		display: flex;
+		flex-direction: column;
+		justify-content: space-around;
+		align-items: space-around;
+		flex-wrap: wrap;
+
+		display: none;
+
+		@media screen and (max-width: 1199px) {
+			display: none;
+		}
+
+		a {
+			padding: 0px 15px 40px 0px;
+			font-family: "Lato";
+			font-size: 16px;
+			font-weight: bold;
+			color: white;
+
+			display: flex;
+			justify-content: space-around;
+
+			&:hover {
+				color: $primary-color;
+			} 
+		}
+	}
+}
+
+// ----------------------------------------------------------------------- END NAV > 100 ----------------------------------------------------------
+
+
+.navbar__logo {
+	width: 30%;
+	height: 100%;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.logo__text {
+	display: flex;
+	flex-direction: column;
+
+	span {
+		font-family: "Lato";
+		font-weight: bold;
+		font-size: 16px;
+	}
+
+	span:first-child {
+		color: $primary-color;
+	}
+
+	span:last-child {
+		color: black;
+	}
+}
+
+.navbar__links {
+	width: 60%;
+	height: 100px;
+	margin-left: auto;
+	background-color: transparent;
+	
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	a {
+		color: white;
+		font-size: 18px;
+		font-weight: 600;
+		font-family: "Lato";
+		
+		&:hover {
+			color: $primary-color;
+		}
+	}
+}
+
+// ---------------------------------------HAMBURGER MENU START------------------------------------------------------------------
+
+.open-button {
+	display: none;
+	@media screen and (max-width: 1199px) {
+		margin-top: 15px;
+		margin-left: 40px;
+		display: block;
+	}
+}
+
+.overlay {
+	display: none;
+	@media screen and (max-width: 1199px) {
+		width: 90%;
+		max-height: 0;
+		top: 60px;
+		left: 0;
+		padding-top: 20px;
+		position: fixed;
+		opacity: 0;
+		z-index: 10;
+		transition: 0.5s;
+		overflow: hidden;
+		overflow-y: auto;
+		background-color: white;
+		display: block;
+		box-shadow: 7px 7px 7px 0 rgba(0,0,0,0.3);
+	}
+} 
+
+.overlay-content {
+	display: none;
+	@media screen and (max-width: 1199px) {
+		width: 100%;
+		height: 600px;
+		display: block;
+	}
+
+	a { 
+		width: 100%;
+		height: 60px;
+		line-height: 60px;
+		display: block;
+		padding-left: 30px;
+		color: #301587;
+		font-size: 16px;
+		font-weight: bold;
+		font-family: "Lato";
+	}
+} 
+
+.overlay-content__offer-panel {
+	display: none;
+	@media screen and (max-width: 1199px) {
+		width: 100%;
+		max-height: 0px;
+		opacity: 0;
+		overflow: hidden;
+		transition: 1s;
+		border-bottom: 1px solid silver;
+
+		display: flex;
+		flex-direction: column;
+		justify-content: space-around;
+		align-items: flex-start;
+		flex-wrap: wrap;
+		a {
+			height: 40px;
+			line-height: 40px;
+			font-family: "Raleway";
+		}
+	}
+}
+
+.open-menu {
+  	opacity: 1;
+  	max-height: 800px; 
+}
+
+.open-overlay {
+	opacity: 1;
+	max-height: 700px;
+}
+
+.offer-background {
+	background-color: #f3f3f3;
+}
+
+/*
+.close-button {
+	display: none;
+	@media screen and (max-width: 1199px) {
+		width: 32px;
+		height: 32px;
+		margin-left: 50%;
+		margin-bottom: 10px;
+		display: block;
+	}
+} */
+
+//---------------------------------------------HAMBURGER MENU END-------------------------------------------------------------
+
+.page-head__title {
+	width: 100%;
+	height: 95%;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	align-items: center;
+}
+
+.title__primary {
+  	margin-bottom: 40px;
+  	font-size: 30px; 	
+  	font-family: "Kaushan Script";
+  	font-weight: 400;
+  	color: $primary-color;
+
+}
+
+.title__subtitle {
+	margin-top: -2%;
+	font-size: 70px;
+	font-family: "Raleway";
+	font-weight: 700;
+	color: white;
+	line-height: 50px;
+	@media screen and (max-width: 599px) {
+		font-size: 50px;
+	}
+}
+
+.container__quotes {
+	width: 100%;
+	height: 100%;
+	margin-top: 60px;
+	margin-bottom: 60px;
+	background-color: white;
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.quotes__wrapper {
+	width: 75%;
+
+	p {
+		padding-right: 10%;
+		padding-left: 10%;
+		font-size: 22px;
+		font-style: italic;
+	}
+}
+
+.quotes__end-quote {
+	display: flex;
+	justify-content: flex-end;
+}
+
+.quotes__author {
+  margin-top: 40px;
+  text-align: right;
+  font-size: 1.5em;
+  font-style: italic;
+}
+
+.about-us {
+	width: 100%;
+	height: 650px;
+	background-image: url("../images/image1.jpg");
+	object-fit: cover;
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.about-us__decoration {
+	width: 60%;
+	height: 90%;
+	
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.decoration__top {
+	width: 90%;
+	height: 7%;
+	border-right: 1px solid white;
+	border-left: 1px solid white;
+}
+
+.decoration__middle {
+	width: 100%;
+	height: 86%;
+	border-top: 1px solid white;
+	border-bottom: 1px solid white;
+	
+	display: flex;
+	justify-content: center;
+}
+
+.middle__center {
+	width: 90%;
+	height: 100%;
+	border-left: 1px solid white;
+	border-right: 1px solid white;
+	text-align: center;
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.decoration__bottom {
+	width: 90%;
+	height: 7%;
+	border-right: 1px solid white;
+	border-left: 1px solid white;
+}
+
+.about-us__subtitle {
+	font-weight: 700;
+	font-family: "Lato";
+	color: white;
+	font-size: 50px;
+}
+
+.about-us__description {
+	width: 80%;
+	height: 55%;
+	font-size: 18px;
+	font-family: "Lato";
+	line-height: 25px;
+	color: white;
+
+	display: flex;
+	align-items: center;
+
+}
+
+.container__company-features {
+	width: 100%;
+  	height: 100%;
+  	padding-top: 40px;
+  	font-family: "Lato";
+  	text-align: center;
+
+  	display: flex;
+  	flex-direction: column;
+  	justify-content: center;
+  	align-items: center;
+}
+
+.company-features__boxes {
+	width: 100%;
+	height: 100%;
+
+	display: flex;
+	justify-content: space-around;
+}
+
+.boxes__box {
+	width: 30%;
+	height: 170px;
+	margin-top: 40px;
+	margin-bottom: 100px;
+	border-right: 1px solid #e5e7e9;
+
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+
+	img {
+		width: 80px;
+		height: 80px;
+	}
+}
+
+.box__content {
+	display: flex;
+	flex-direction: column;
+
+	p {
+		margin-right: 40px;
+		margin-left: 20px;
+		text-align: left;
+
+		&:last-child {
+			color: rgb(155,155,155);
+		}
+	}
+}
+
+.content__title {
+	font-size: 20px;
+	color: $primary-color;
+	font-family: "Lato";
+}
+
+.container__gallery {
+	width: 100%;
+	height: 100%;
+	cursor: pointer;
+}
+
+.gallery__row {
+	width: 100%;
+	height: 300px;
+
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.row__img  {
+	width: 33%;
+	height: 300px;
+	
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.img1 {
+	background-image: url("../images/gallery1.jpg");
+}
+
+.img2 {
+	background-image: url("../images/gallery2.jpg");
+}
+
+.img3 {
+	width: 34%;
+	background-image: url("../images/gallery3.JPG");
+}
+
+.img4 {
+	background-image: url("../images/gallery4.JPG");
+}
+
+.img5 {
+	background-image: url("../images/gallery5.jpg");
+}
+
+.img6 {
+	width: 34%;
+	background-image: url("../images/gallery6.JPG");	
+}
+
+.img7 {
+	width: 50%;
+	height: 510px;
+	background-image: url("../images/gallery7.jpg");
+}
+
+.img8 {
+	width: 50%;
+	height: 510px;
+	background-image: url("../images/gallery8.jpg");
+}
+
+.img1__decoration, .img2__decoration, .img3__decoration, 
+.img4__decoration, .img5__decoration, .img6__decoration, 
+.img7__decoration, .img8__decoration {
+	width: 70%;
+	height: 90%;
+	
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.img1__decoration .decoration__top, .img2__decoration .decoration__top, .img3__decoration .decoration__top, 
+.img4__decoration .decoration__top, .img5__decoration .decoration__top, .img6__decoration .decoration__top,
+.img7__decoration .decoration__top, .img8__decoration .decoration__top {
+	border-color: transparent;
+	transition: 1s;
+}
+
+.img1__decoration .decoration__middle, .img2__decoration .decoration__middle, .img3__decoration .decoration__middle,
+.img4__decoration .decoration__middle, .img5__decoration .decoration__middle, .img6__decoration .decoration__middle,
+.img7__decoration .decoration__middle, .img8__decoration .decoration__middle {
+	border-color: transparent;
+	transition: 2s;
+
+	.middle__center {
+		border-color: transparent;
+		transition: 3s;
+
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		p {
+			font-size: 20px;
+			color: transparent;
+			&:first-child {
+				font-family: "Raleway";
+			}
+			&:last-child {
+				font-family: $secondary-font;
+			}
+		}
+	}
+}
+
+.img1__decoration .decoration__bottom, .img2__decoration .decoration__bottom, .img3__decoration .decoration__bottom,
+.img4__decoration .decoration__bottom, .img5__decoration .decoration__bottom, .img6__decoration .decoration__bottom,
+.img7__decoration .decoration__bottom, .img8__decoration .decoration__bottom {
+	border-color: transparent;
+	transition: 3s;
+}
+
+.gallery__last-row {
+	width: 100%;
+	height: 510px;
+
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.container__leader {
+	width: 100%;
+	height: 100%;
+	padding-top: 45px;
+	padding-bottom: 45px;
+	background-color: #f3f3f3;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.leader__title {
+	font-size: 25px;
+	font-weight: 400;
+	color: $primary-color;
+	font-family: $secondary-font;
+	text-align: center;
+}
+
+.leader__subtitle {
+	font-size: 40px;
+	font-weight: 700;
+	color: #242120;
+	font-family: "Raleway";
+	text-align: center;
+}
+
+.leader__content {
+	width: 80%;
+	height: 550px;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.content__img {
+	width: 50%;
+	height: 100%;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.content__description {
+	width: 50%;
+
+	font-size: 20px;
+	font-family: "Lato";
+}
+
+.container__events {
+	width: 100%;
+	height: 100%;
+	margin-bottom: 0px;
+	background-size: cover;
+	object-fit: cover;
+	background-position: center;
+}
+
+.events__title {
+	font-size: 30px;
+	font-family: "Raleway";
+	color: white;
+	margin-bottom: -80px;	
+	position: relative;  //position: relative + z-index pozwala dac element na elemencie bez deklarowania podrzednemu elementowi pozycji absolutnej
+	z-index: 1000000000;
+}
+
+.item-1, .item-2, .item-3, .item-4, .item-5, .item-6 {
+	width: 100%;
+	height: 660px;
+	background-size: cover;
+	object-fit: cover;
+	background-position: center;
+}
+
+.item-1 {
+	background-image: url("../images/11.jpg");
+}
+
+.item-2 {
+	background-image: url("../images/22.jpg");
+}
+
+.item-3 {
+	background-image: url("../images/11.jpg");
+}
+
+.item-4 {
+	background-image: url("../images/22.jpg");
+}
+
+.item-5 {
+	background-image: url("../images/11.jpg");
+}
+
+.item-6 {
+	background-image: url("../images/22.jpg");
+}
+
+.owl-carousel {
+	width: 100%;
+	height: 660px;
+	margin-bottom: 10px;
+}
+
+footer {
+	width: 100%;
+	height: 330px;
+	background-color: #182439;
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.footer__content {
+	width: 100%;
+	height: 270px;
+
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.content__logo {
+	width: 30%;
+	height: 100%;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.content__menu {
+	width: 25%;
+	height: 100%;
+	line-height: 40px;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+
+	a {
+		font-size: 16px;
+		font-family: "Raleway";
+		color: white;
+
+		&:hover {
+			color: $primary-color;
+		}
+	}
+
+}
+
+.content__contact {
+	width: 30%;
+	height: 100%;
+	line-height: 30px;
+	font-size: 14px;
+	color: white;
+	font-family: "Raleway";
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.contact__item:first-child {
+	font-size: 16px;
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+.footer__divider {
+	width: 90%;
+	height: 1px;
+	background: #5f5f5f;
+}
+
+.footer__copyright {
+	width: 100%;
+	height: 60px;
+	color: #5f5f5f;
+	font-family: "Lato";
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+
+
+
+
+
+
+
